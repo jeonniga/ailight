@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+	<title>AI 광선로 계측 및 관리 시스템</title>
+	<link rel="stylesheet" href="../static/css/common2018.css">
+	<link rel="stylesheet" href="../static/css/userDefine.css">
+	<script type="text/javascript" src="../static/js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="../static/js/common.js"></script>
+	<script>
+		/* 2018-11 메뉴고정 */
+		$(document).ready(function(){
+		    var $window = $(window);
+			var nav = $('#main-navigation');
+			$window.scroll(function(){
+				if ($window.scrollTop() >= 45) {
+				   nav.addClass('fixed-header');
+				}
+				else {
+				   nav.removeClass('fixed-header');
+				}
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+<div id="wrap">
+	<div class="skip_navigation" >
+		<a href="#container">본문 바로가기</a>
+		<a href="#gnb">메뉴 바로가기</a>
+	</div>
+
+	<div id="header">		
+		<div class="logo">
+			<a href="#">AI 광선로 계측 및 관리 시스템</a>
+		</div>
+		<div class="mShowHide">
+			<a onClick="lnbClose()" id="btnOpen"><img src="../static/img/hideNew.png" alt="메뉴닫기" /></a>
+			<a onClick="lnbOpen()" id="btnClose"><img src="../static/img/showNew.png" alt="메뉴열기" /></a>
+		</div>
+		<div class="login">
+			<ul>
+				<li><strong>관리자</strong>님 방문해주셔서 감사합니다.</li>
+				<li class="logout"><a href="#"><img src="../static/img/logout.png" alt="로그아웃" /></a></li>
+				<li class="logout"><a href={{ _('langurl') }}><img src={{ _('lang') }} width="15px" height="15px"/></a></li>
+			</ul>
+		</div>		
+	</div>
+
+
+	<div id="container">
+		
+		<!-- [s] left menu -->
+		<div class="lnb" id="leftLnb">		
+			<nav id="main-navigation">
+				<div class="subLnb">
+					<ul>
+						<li><a href="/dashboard/weathermap" class="on">{{ _('left1') }}</a></li>
+						<li><a href="/model/doeda">{{ _('left2') }}</a></li>
+						<li><a href="/user/measureresult">{{ _('left3') }}</a></li>
+						<li><a href="/system/compmng">{{ _('left4') }}</a>
+						<ul>
+								<li><a href="/system/compmng"><span>{{ _('left4_1') }}</span></a></li>
+								<li><a href="/system/usermng"><span>{{ _('left4_2') }}</span></a></li>
+								<li><a href="/system/clouderamng"><span>{{ _('left4_3') }}</span></a></li>
+						</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<!-- [e] left menu -->
+		
+		<!-- [s] sub content -->
+		<div id="content">			
+			<div class="subContent">
+				<div class="mainTitle">
+					<h2>{{_('system_company_title')}}</h2>
+					<ul id="breadcrumb">
+						<li><a href="#;">HOME</a></li>
+						<li><a href="#;">1depth 메뉴</a></li>
+						<li><a href="#;"><strong>2depth 메뉴</strong></a></li>
+					</ul>
+				</div>
+				<div class="section">
+					<h3>{{_('system_company_search_condition')}}</h3>					
+					<div class="groupSearch">
+	
+						<table class="tbl_Sch" summary="조회조건">
+							<caption>조회조건</caption>
+							<colgroup>
+								<col style="width:10%" />
+								<col style="width:23%" />
+								<col style="width:10%" />
+								<col style="width:24%" />
+								<col style="width:10%" />
+								<col style="width:23%" />
+							</colgroup>
+							<tr>
+								<th>{{_('system_company_registed_date')}}</th>
+								<td>
+									<input name="input" type="text" class="date" value=""/>
+									<a href="#"><img src="../static/img/ico_calendar.gif" alt="달력제어" /></a>
+									~
+									<input name="input" type="text" class="date" value=""/>
+									<a href="#"><img src="../static/img/ico_calendar.gif" alt="달력제어" /></a>
+									</select>
+								</td>
+								<th>{{_('system_company_division')}}</th>
+								<td colspan="3">
+									<select>
+										<option>전체</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th>{{_('system_company_chosen_item')}}</th>
+								<td>
+									<select>
+										<option>전체</option>
+									</select>
+								</td>
+								<th>{{_('system_company_article1')}}</th>
+								<td>									
+									<input name="input" type="text" class="size-100p" value=""/>
+								</td>
+								<th>{{_('system_company_article2')}}</th>
+								<td>
+									<input name="input" type="text" class="size-100p" value=""/>
+								</td>
+							</tr>
+							<tr>								
+								<th>{{_('system_company_content')}}</th>
+								<td colspan="5">
+									<input name="input" type="text" class="size-100p" value=""/>
+								</td>
+							</tr>							
+						</table>				
+					</div>
+					
+					<div class="schBtn">
+						<span class="btn_sch"><a href="#">{{_('system_company_search')}}</a></span>
+					</div>
+				</div>
+
+				<div class="section">
+					
+					<h3>{{_('system_company_basic')}}</h3>
+					
+					<div class="groupContent">
+						<div class="table_box">
+							<table class="tbl_normal" summary="기본정보영역">
+								<caption>기본정보영역</caption>
+								<colgroup>
+									<col style="width:10%" />
+									<col style="width:40%" />
+									<col style="width:10%" />
+									<col style="width:40%" />
+								</colgroup>
+								<tr>
+									<th>{{_('system_company_name')}} <span class="important">*</span></th>
+									<td>
+										<input name="input" type="text" class="size-100p" value=""/>
+									</td>
+									<th>{{_('system_company_phone')}} <span class="important">*</span></th>
+									<td>
+										<input name="input" type="text" class="size-100p" value=""/>
+									</td>
+								</tr>
+								<tr>
+									<th>{{_('system_company_adddr')}} <span class="important">*</span></th>
+									<td colspan="3">
+										<input name="input" type="text" class="size-100p" value=""/>
+									</td>
+								</tr>
+								<tr>
+									<th>{{_('system_company_companyid')}}</th>
+									<td colspan="3">
+										<input name="input" type="text" class="size-100p" value=""/>
+									</td>
+								</tr>
+								<tr>
+							</table>
+						</div>
+					</div>
+
+					
+				</div>				
+
+				<div class="section">
+					<div class="etcTitle">
+						{{_('system_gis_resultofsearch')}} (<span>5</span>/<span>175</span>)
+					</div>
+					
+					<div class="title_btn_right">
+						<span class="btn_regist"><a href="#">{{_('system_gis_regist')}}</a></span>
+						<span class="btn_delete"><a href="#">{{_('system_gis_delete')}}</a></span>
+						<span class="btn_detail"><a href="#">{{_('system_gis_detail')}}</a></span>
+					</div>
+					
+					<div class="groupContent">
+						<div class="table_list">
+							<table class="tbl_list" summary="기본정보영역">
+								<caption>기본정보영역</caption>
+								<colgroup>
+									<col style="width:5%" />
+									<col style="width:5%" />
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:60%" />
+									<col style="width:10%" />
+								</colgroup>
+								<tr>
+									<th ><input type="checkbox" /></th>
+									<th >{{_('system_company_serialno')}}</th>
+									<th >{{_('system_company_name')}}</th>
+									<th >{{_('system_company_phone')}}</th>
+									<th >{{_('system_company_adddr')}}</th>
+									<th >{{_('system_company_companyid')}}</th>
+								</tr>
+								<tr>
+									<td><input type="checkbox" disabled /></td>
+									<td>1</td>
+									<td>시공업체1</td>
+									<td class="left">042-484-8828</td>
+									<td>대전시 서구 탄방동 탄방로 43</td>
+									<td>123-45-67890</td>
+								</tr>
+							</table>
+						</div>						
+					</div>
+				</div>
+
+				<div class="section">
+					<div class="etcTitle">
+						{{_('system_gis_countofsearch')}} (<span>10</span>/<span>80</span>)
+					</div>
+					
+					<div class="title_btn_right">
+						<span class="btn_excel"><a href="#">{{_('system_gis_exceldown')}}</a></span>
+						<span class="btn_detail"><a href="#">{{_('system_gis_csvup')}}</a></span>
+					</div>
+					
+					<div class="groupContent">
+						<div class="gridArea">
+							<p>
+								그리드 삽입공간
+							</p>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- [e] sub content -->
+
+	</div>
+
+	<div id="footer">
+		<div class="copy">
+			Copyrights ⓒ  2019. All right reserved.
+		</div>		
+	</div>
+
+</div>
+
+</body>
+</html>

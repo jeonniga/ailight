@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+	<title>AI 광선로 계측 및 관리 시스템</title>
+	<link rel="stylesheet" href="../static/css/common2018.css">
+	<link rel="stylesheet" href="../static/css/userDefine.css">
+	<script type="text/javascript" src="../static/js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="../static/js/common.js"></script>
+	<script>
+		/* 2018-11 메뉴고정 */
+		$(document).ready(function(){
+		    var $window = $(window);
+			var nav = $('#main-navigation');
+			$window.scroll(function(){
+				if ($window.scrollTop() >= 45) {
+				   nav.addClass('fixed-header');
+				}
+				else {
+				   nav.removeClass('fixed-header');
+				}
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+<div id="wrap">
+	<div class="skip_navigation" >
+		<a href="#container">본문 바로가기</a>
+		<a href="#gnb">메뉴 바로가기</a>
+	</div>
+
+	<div id="header">		
+		<div class="logo">
+			<a href="#">AI 광선로 계측 및 관리 시스템</a>
+		</div>
+		<div class="mShowHide">
+			<a onClick="lnbClose()" id="btnOpen"><img src="../static/img/hideNew.png" alt="메뉴닫기" /></a>
+			<a onClick="lnbOpen()" id="btnClose"><img src="../static/img/showNew.png" alt="메뉴열기" /></a>
+		</div>
+		<div class="login">
+			<ul>
+				<li><strong>관리자</strong>님 방문해주셔서 감사합니다.</li>
+				<li class="logout"><a href="#"><img src="../static/img/logout.png" alt="로그아웃" /></a></li>
+				<li class="logout"><a href={{ _('langurl') }}><img src={{ _('lang') }} width="15px" height="15px"/></a></li>
+			</ul>
+		</div>		
+	</div>
+
+
+	<div id="container">
+		
+		<!-- [s] left menu -->
+		<div class="lnb" id="leftLnb">		
+			<nav id="main-navigation">
+				<div class="subLnb">
+					<ul>
+						<li><a href="/dashboard/weathermap" class="on">{{ _('left1') }}</a></li>
+						<li><a href="/model/doeda">{{ _('left2') }}</a></li>
+						<li><a href="/user/measureresult">{{ _('left3') }}</a>
+							<ul>
+								<li><a href="/user/measureresult"><span>{{ _('left3_1') }}</span></a></li>
+								<li><a href="/user/gisinfo"><span>{{ _('left3_2') }}</span></a></li>
+							</ul>
+						</li>
+						<li><a href="/system/compmng">{{ _('left4') }}</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<!-- [e] left menu -->
+		
+		<!-- [s] sub content -->
+		<div id="content">			
+			<div class="subContent">
+				<div class="mainTitle">
+					<h2>{{_('model_measure_title')}}</h2>
+					<ul id="breadcrumb">
+						<li><a href="#;">HOME</a></li>
+						<li><a href="#;">1depth 메뉴</a></li>
+						<li><a href="#;"><strong>2depth 메뉴</strong></a></li>
+					</ul>
+				</div>
+
+				<div class="section">
+					
+					<h3>{{_('model_measure_basic')}}</h3>
+					
+					<div class="groupContent">
+						<div class="table_box">
+							<table class="tbl_normal" summary="기본정보영역">
+								<caption>기본정보영역</caption>
+								<colgroup>
+									<col style="width:10%" />
+									<col style="width:40%" />
+									<col style="width:10%" />
+									<col style="width:40%" />
+								</colgroup>
+								<tr>
+									<th>{{_('model_measure_workingdate')}} <span class="important">*</span></th>
+									<td>
+										<input name="input" type="text" class="date" value=""/>
+										<a href="#"><img src="../static/img/ico_calendar.gif" alt="달력제어" /></a>
+									</td>
+									<th>{{_('model_measure_workingno')}} <span class="important">*</span></th>
+									<td>
+										<input name="input" type="text" class="size-100p" value=""/>
+									</td>
+								</tr>
+								<tr>
+									<th>{{('model_measure_workingtime')}} <span class="important">*</span></th>
+									<td>
+										<input name="input" type="text" class="size-100p" value=""/>
+									</td>
+									<th>{{_('model_measure_workinglineno')}}<span class="important">*</span></th>
+									<td>
+									  <input name="input" type="text" class="size-100p" value=""/>
+									</td>
+								</tr>
+								<tr>
+									<th>{{_('model_measure_boxid')}} <span class="important">*</span></th>
+									<td>
+										<input name="input" type="text" class="size-100p" value=""/>
+									</td>
+									<th>{{_('model_measure_poleno')}}<span class="important">*</span></th>
+									<td>
+									  <input name="input" type="text" class="size-100p" value=""/>
+									</td>
+								</tr>
+								<tr>
+									<th>{{_('model_measure_boxno')}} <span class="important">*</span></th>
+									<td>
+										<input name="input" type="text" class="size-100p" value=""/>
+									</td>
+									<th>{{_('model_measure_workingtype')}}<span class="important">*</span></th>
+									<td>
+										<input type="radio" id="check0" name="check" value="1_1" /><label for="check0"><span></span> 선로구성</label>
+										<input type="radio" id="check1" name="check" value="1_1" checked /><label for="check1"><span></span> 코어선택</label>
+									</td>
+								</tr>
+								<tr>
+									<th>{{_('model_measure_linecutflag')}} <span class="important">*</span></th>
+									<td>
+										<input name="input" type="text" class="size-100p" value=""/>
+									</td>
+									<th>{{_('model_measure_wave')}}<span class="important">*</span></th>
+									<td>
+                    <input name="input" type="text" class="size-100p" value=""/>
+									</td>
+								</tr>
+								<tr>
+									<th>{{_('model_measure_side')}} <span class="important">*</span></th>
+									<td>
+								    <input type="radio" id="check0" name="check" value="1_1" /><label for="check0"><span></span> L</label>
+										<input type="radio" id="check1" name="check" value="1_1" checked /><label for="check1"><span></span> R</label>
+									</td>
+									<th>{{_('model_measure_amountoflight')}}<span class="important">*</span></th>
+									<td>
+                    <input name="input" type="text" class="size-100p" value=""/>
+									</td>
+								</tr>
+								<tr>
+									<th>{{_('model_measure_coreangle')}} <span class="important">*</span></th>
+									<td>
+										<input name="input" type="text" class="size-100p" value=""/>
+									</td>
+									<th>{{_('model_measure_linecutangleL')}}<span class="important">*</span></th>
+									<td>
+                    <input name="input" type="text" class="size-100p" value=""/>
+									</td>
+								</tr>
+								<tr>
+									<th>{{_('model_measure_linecutangleR')}}<span class="important">*</span></th>
+									<td>
+										<input name="input" type="text" class="size-100p" value=""/>
+									</td>
+									<th>{{_('model_measure_coreoffset')}}<span class="important">*</span></th>
+									<td>
+                    <input name="input" type="text" class="size-100p" value=""/>
+									</td>
+								</tr>			
+								<tr>
+									<th>{{_('model_measure_temperature')}} <span class="important">*</span></th>
+									<td>
+										<input name="input" type="text" class="size-100p" value=""/>
+									</td>
+									<th>{{_('model_measure_pressure')}}<span class="important">*</span></th>
+									<td>
+                    <input name="input" type="text" class="size-100p" value=""/>
+									</td>
+								</tr>		
+								<tr>
+									<th>{{_('model_measure_loss')}}<span class="important">*</span></th>
+									<td>
+										<input name="input" type="text" class="size-100p" value=""/>
+									</td>
+									<th>{{_('model_measure_finalrn')}}<span class="important">*</span></th>
+									<td>
+                    <input name="input" type="text" class="size-100p" value=""/>
+									</td>
+								</tr>																					
+							</table>
+						</div>
+					</div>
+
+
+				<div class="section">
+					<div class="etcTitle">
+						검색결과 (<span>5</span>/<span>175</span>)
+					</div>
+					
+					<div class="title_btn_right">
+						<span class="btn_regist"><a href="#">{{_('model_measure_regist')}}</a></span>
+						<span class="btn_delete"><a href="#">{{_('model_measure_delete')}}</a></span>
+						<span class="btn_take"><a href="#">{{_('model_measure_detail')}}</a></span>
+						<span class="btn_detail"><a href="#">{{_('model_measure_update')}}</a></span>
+						<span class="btn_excel"><a href="#">{{_('model_measure_chosendelete')}}</a></span>
+					</div>
+					
+					<div class="groupContent">
+						<div class="table_list">
+							<table class="tbl_list" summary="기본정보영역">
+								<caption>{{_('model_measure_basic')}}</caption>
+								<colgroup>
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:20%" />
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:10%" />
+								</colgroup>
+								<tr>
+									<th rowspan="2"><input type="checkbox" /></th>
+									<th rowspan="2">{{_('model_measure_workingdate')}}</th>
+									<th rowspan="2">{{_('model_measure_workingno')}}</th>
+									<th rowspan="2">{{_('model_measure_workingno')}}</th>
+									<th rowspan="2">{{_('model_measure_workingno')}}</th>
+									<th rowspan="2">{{_('model_measure_workingno')}}</th>
+									<th colspan="3">{{_('model_measure_workingno')}}</th>
+								</tr>
+								<tr>
+									<th>{{_('model_measure_amountoflight')}}</th>
+									<th>{{_('model_measure_coreangle')}}</th>
+									<th>{{_('model_measure_loss')}}</th>
+								</tr>
+								<tr>
+									<td><input type="checkbox" disabled /></td>
+									<td>2020-02-07</td>
+									<td>WKS-200207-00616-0001</td>
+									<td>72C(1,2)-144C(112,113)</td>
+									<td class="left">1959Q312</td>
+									<td>52654972</td>
+									<td>-13.20</td>
+									<td>0.2</td>
+									<td>0.01</td>
+								</tr>
+							</table>
+						</div>						
+					</div>
+				</div>
+
+				<div class="section">
+					
+					<div class="title_btn_right">
+						<span class="btn_excel"><a href="#">{{_('model_measure_csvupload')}}</a></span>
+					</div>
+					
+					<div class="groupContent">
+						<div class="gridArea">
+							<p>
+								그리드 삽입공간
+							</p>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- [e] sub content -->
+
+	</div>
+
+	<div id="footer">
+		<div class="copy">
+			Copyrights ⓒ  2019. All right reserved.
+		</div>		
+	</div>
+
+</div>
+
+</body>
+</html>

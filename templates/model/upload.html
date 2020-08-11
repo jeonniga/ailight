@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+   
+      <form action = "http://localhost:5000/model/uploader" method = "POST" 
+         enctype = "multipart/form-data">
+         <p><input type = "file" name = "file" /><br>
+         <p><input type = "submit" value = "업로드" />
+      </form>
+      
+  </body>
+</html>

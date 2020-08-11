@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+	<title>AI 광선로 계측 및 관리 시스템</title>
+	<link rel="stylesheet" href="../static/css/common2018.css">
+	<link rel="stylesheet" href="../static/css/userDefine.css">
+	<script type="text/javascript" src="../static/js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="../static/js/common.js"></script>
+	<script>
+		/* 2018-11 메뉴고정 */
+		$(document).ready(function(){
+		    var $window = $(window);
+			var nav = $('#main-navigation');
+			$window.scroll(function(){
+				if ($window.scrollTop() >= 45) {
+				   nav.addClass('fixed-header');
+				}
+				else {
+				   nav.removeClass('fixed-header');
+				}
+			});
+		});
+
+	</script>
+
+
+    <link rel="stylesheet" href="../static/css/jquery.circliful.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div id="wrap">
+	<div class="skip_navigation" >
+		<a href="#container">본문 바로가기</a>
+		<a href="#gnb">메뉴 바로가기</a>
+	</div>
+
+	<div id="header">		
+		<div class="logo">
+			<a href="#">AI 광선로 계측 및 관리 시스템</a>
+		</div>
+		<div class="mShowHide">
+			<a onClick="lnbClose()" id="btnOpen"><img src="../static/img/hideNew.png" alt="메뉴닫기" /></a>
+			<a onClick="lnbOpen()" id="btnClose"><img src="../static/img/showNew.png" alt="메뉴열기" /></a>
+		</div>
+		
+		<div class="login">
+			<ul>
+				<li><strong>관리자</strong>님 방문해주셔서 감사합니다.</li>
+				<li class="logout"><a href="#"><img src="../static/img/logout.png" alt="로그아웃" /></a></li>
+				<li class="logout"><a href={{ _('langurl') }}><img src={{ _('lang') }} width="15px" height="15px"/></a></li>
+			</ul>
+		</div>		
+	</div>
+
+
+	<div id="container">
+		
+		<!-- [s] left menu -->
+		<div class="lnb" id="leftLnb">		
+			<nav id="main-navigation">
+				<div class="subLnb">
+					<ul>
+						<li><a href="/dashboard/weathermap" class="on">{{ _('left1') }}</a></li>
+						<li><a href="/model/doeda">{{ _('left2') }}</a></li>
+						<li><a href="/user/measureresult">{{ _('left3') }}</a></li>
+						<li><a href="/system/compmng">{{ _('left4') }}</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<!-- [e] left menu -->
+		
+		<!-- [s] sub content -->
+		<div id="content">			
+			<div class="subContent">
+				<div class="mainTitle">
+					<h2>{{ _('start_main_title') }}</h2>
+					<ul id="breadcrumb">
+						<li><a href="#;">HOME</a></li>
+						<li><a href="#;">1depth 메뉴</a></li>
+						<li><a href="#;"><strong>2depth메뉴</strong></a></li>
+					</ul>
+				</div>
+
+				</div>
+
+				<div class="section">
+					<h3 style="margin-top:15px;">{{ _('start_subtitle1') }}</h3>
+
+					<div class="groupContent">
+						<div class="part_table">
+							<table class="tbl_progress" summary="보전서가 현황">
+								<caption>예보 현황</caption>
+								<colgroup>
+									<col style="width:20%" />
+									<col style="width:15%" />
+									<col style="width:65%" />
+								</colgroup>
+								<tr>
+									<th>전주번호</th>
+									<th>추정로스</th>
+									<th>작업가능성(%)</th>
+								</tr>
+								<tr>
+									<td>1959Q312</td>
+									<td>0.3</td>
+									<td class="progress">
+										<div class="progress-container">
+											<div class="progressbar green" style="width:25%">
+												<div class="progress-center text-white">25%</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>1959Q511</td>
+									<td>0.1</td>
+									<td class="progress">
+										<div class="progress-container">
+											<div class="progressbar indigo" style="width:50%">
+												<div class="progress-center text-white">50%</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>1959Q711</td>
+									<td>0.01</td>
+									<td class="progress">
+										<div class="progress-container">
+											<div class="progressbar purple" style="width:75%">
+												<div class="progress-center text-white">75%</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+
+					<h3 style="margin-top:15px;">{{ _('start_subtitle2') }}</h3>
+					<div class="groupContent">
+						<div class="ddt-super" id="test-circle">{{ _('start_subtitle2_1') }}</div>
+						<div class="ddt-super" id="test-circle5">{{ _('start_subtitle2_2') }}</div>
+						<div class="ddt-super" id="test-circle7">{{ _('start_subtitle2_3') }}</div>
+					</div>
+
+					<h3 style="margin-top:15px;">{{ _('start_subtitle3') }}</h3>
+					<div class="groupContent">
+						<div class="table_list">
+						<table class="tbl_list" summary="기본정보영역">
+								<caption>기본정보영역</caption>
+								<colgroup>
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:20%" />
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:10%" />
+									<col style="width:10%" />
+								</colgroup>
+								<tr>
+									<th rowspan="2"><input type="checkbox" /></th>
+									<th rowspan="2">{{ _('start_subtitle3_1') }}</th>
+									<th rowspan="2">{{ _('start_subtitle3_2') }}</th>
+									<th rowspan="2">{{ _('start_subtitle3_3') }}</th>
+									<th rowspan="2">{{ _('start_subtitle3_4') }}</th>
+									<th rowspan="2">{{ _('start_subtitle3_5') }}</th>
+									<th colspan="3">{{ _('start_subtitle3_6') }}</th>
+								</tr>
+								<tr>
+									<th>{{ _('start_subtitle3_7') }}</th>
+									<th>{{ _('start_subtitle3_8') }}</th>
+									<th>{{ _('start_subtitle3_9') }}</th>
+								</tr>
+								<tr>
+									<td><input type="checkbox" disabled /></td>
+									<td>2020-02-07</td>
+									<td>WKS-200207-00616-0001</td>
+									<td>72C(1,2)-144C(112,113)</td>
+									<td class="left">1959Q312</td>
+									<td>52654972</td>
+									<td>-13.20</td>
+									<td>0.2</td>
+									<td>0.01</td>
+								</tr>
+							</table>
+						</div>						
+					</div>
+				</div>
+
+				<div class="section">
+					
+					<div class="groupContent">
+						<div class="gridArea">
+							<p>
+								그리드 삽입공간
+							</p>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- [e] sub content -->
+
+	</div>
+
+	<div id="footer">
+		<div class="copy">
+			Copyrights ⓒ  2019. All right reserved.
+		</div>		
+	</div>
+
+</div>
+
+<script src="../static/js/jquery.circliful.js"></script>
+<script>
+    $( document ).ready(function() { // 6,32 5,38 2,34
+        $("#test-circle").circliful({
+            animation: 1,
+            animationStep: 5,
+            foregroundBorderWidth: 15,
+            backgroundBorderWidth: 15,
+            percent: 38,
+            textSize: 28,
+            textStyle: 'font-size: 12px;',
+            textColor: '#666',
+        });
+        $("#test-circle2").circliful({
+            animation: 1,
+            animationStep: 6,
+            foregroundBorderWidth: 5,
+            backgroundColor: "none",
+            fillColor: '#eee',
+            percent: 50,
+            iconColor: '#3498DB',
+            icon: 'f206',
+            iconSize: '40',
+            iconPosition: 'middle'
+        });
+        $("#test-circle3").circliful({
+            animation: 1,
+            animationStep: 6,
+            foregroundBorderWidth: 5,
+            backgroundBorderWidth: 1,
+            percent: 88,
+            iconColor: '#3498DB',
+            icon: 'f004',
+            iconSize: '40',
+            iconPosition: 'middle'
+        });
+        $("#test-circle4").circliful({
+            animation: 1,
+            animationStep: 1,
+            target: 10,
+            start: 2,
+            showPercent: 1,
+            backgroundColor: '#000',
+            foregroundColor: '#A8C64A',
+            fontColor: '#000',
+            iconColor: '#000',
+            icon: 'f0a0',
+            iconSize: '40',
+            iconPosition: 'middle',
+            text: 'No Kids'
+        });
+        $("#test-circle5").circliful({
+            animationStep: 5,
+            foregroundBorderWidth: 5,
+            backgroundBorderWidth: 15,
+            animateInView: true,
+            percent: 80,
+            icon: 'f0a0',
+            iconPosition: 'middle',
+            textBelow: true
+        });
+        $("#test-circle6").circliful({
+            animation: 1,
+            animationStep: 5,
+            foregroundBorderWidth: 7,
+            backgroundBorderWidth: 7,
+            textSize: 28,
+            textStyle: 'font-size: 12px;',
+            textColor: '#666',
+            multiPercentage: 1,
+            percentages: [
+                {'percent': 10, 'color': '#3180B8', 'title': 'Gryffindor' },
+                {'percent': 30, 'color': '#4ADBEA', 'title': 'Ravenclaw' },
+                {'percent': 50, 'color': '#49EBA8', 'title': 'Hufflepuff' },
+                {'percent': 70, 'color': '#FFCA35', 'title': 'Slytherin' }
+            ],
+            multiPercentageLegend: 1,
+            replacePercentageByText: '',
+            backgroundColor: '#eee',
+            icon: 'f0d0',
+            iconPosition: 'middle'
+        });
+        $("#test-circle7").circliful({
+            animation: 0,
+            animationStep: 1,
+            animateInView: true,
+            percent: 80,
+            textSize: 28,
+            textStyle: 'font-size: 12px;',
+            textColor: '#666',
+            progressColor: {20: '#CC9487', 40: '#FA6C00', 60: '#FF6C99'}
+        });
+    });
+</script>
+
+
+</body>
+</html>
